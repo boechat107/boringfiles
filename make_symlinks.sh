@@ -7,16 +7,6 @@ ORIGIN="$PWD"/boringfiles
 mklink() {
     declare fname="$1"
     arrName=(${fname//__/ })
-    lastName="${arrName[-1]}"
-    ## Checking if the file name points to a directory.
-    if [[ -d "$ORIGIN"/"${arrName[-1]}" ]]
-    then
-        isDir='1'
-    else
-        isDir='0'
-    fi
-    printf "\ndir: %s" "$isDir"
-    printf "\nlast: %s" "$lastName"
     ## Checking if the path has dot. If it has, we need to add a dot to the
     ## first path name.
     if [[ "${arrName[0]}" == 'd' ]]
@@ -28,12 +18,9 @@ mklink() {
     else
         arrPath=("${arrName[@]}")
     fi
-    printf "\n%s\n" "${arrPath[@]}"
     pathVal="$HOME"$(printf "/%s" "${arrPath[@]%/}")
-    printf "\n%s" "$ORIGIN"/"$fname"
-    printf "\n%s\n" "$pathVal"
     ## Executing the actions of removal and symbolic linking.
-    printf "\nRemoving the file %s\n" "$pathVal"
+    printf "\nRemoving the file %s" "$pathVal"
     rm -rf "$pathVal"
     printf "\nCreating link from %s" "$ORIGIN"/"$fname"
     ln -s "$ORIGIN"/"$fname" "$pathVal"
