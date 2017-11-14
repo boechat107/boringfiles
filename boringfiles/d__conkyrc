@@ -1,0 +1,20 @@
+out_to_x no
+out_to_console yes
+use_spacer left
+update_interval 2.0
+short_units yes
+
+
+#^fg(\#81BEF7)CPU: ^fg()$cpu%  ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input | cut -c-2}C ${acpitemp}C ^fg(\#ff0000)| \
+#^fg()♪ ^fg()${exec ~/.conky/volumelevel.sh} ^fg(\#ff0000)| \
+
+TEXT
+^fg(\#ffa500)Kernel: ^fg()${kernel} ^fg(\#ff0000)| \
+^fg(\#81BEF7)CPU: ^fg()$cpu%  ${acpitemp}C ^fg(\#ff0000)| \
+^fg(\#ffd700)RAM: ^fg()${memperc}% ^fg(\#ff0000)| \
+^fg(\#ffd700)SWAP: ^fg()${swapperc}% ^fg(\#ff0000)| \
+^fg(\#F7BE81)Root: ^fg()${fs_used /} / ${fs_size /} ^fg(\#ff0000)| \
+^fg()♪ ^fg()${exec amixer -c 0 get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "Mute" } else { print $2"%" }}' | uniq | head -1} ^fg(\#ff0000)| \
+^fg()${time %a, %d.%m.%Y} ^fg(\#58ACFA)${time %H:%M} ^fg(\#ff0000)| \
+^fg(\#ffa500)BATT: $eval${if_match "$battery BAT0" > "20"}^fg(\#0B6121)${battery BAT0}$endif${if_match "$battery BAT0" <= "20"}^fg(\#FE2E2E)${battery BAT0}$endif
+#^fg(\#ffa500)BATT: $eval${if_match "$battery BAT1" > "20"}^fg(\#0B6121)${battery BAT1}$endif${if_match "$battery BAT1" <= "20"}^fg(\#FE2E2E)${battery BAT1}$endif
