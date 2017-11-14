@@ -26,4 +26,12 @@ mklink() {
     ln -s "$ORIGIN"/"$fname" "$pathVal"
 }
 
-mklink "$@"
+main() {
+    for file in boringfiles/*; do
+        ## Passing only the file/directory name.
+        ## https://stackoverflow.com/a/9011264/747872
+        mklink "${file##*/}"
+    done
+}
+
+main
