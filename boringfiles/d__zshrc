@@ -1,0 +1,159 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="avit"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to disable command auto-correction.
+# DISABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git git-flow autojump vi-mode docker lein pip tmux)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias tmux="tmux -2"
+alias 7z-create="7z a -t7z -m0=lzma -mx=4 -mfb=64 -md=32m -ms=on"
+alias rm=trash
+alias rrm=/bin/rm
+#alias countlines="perl -le 'print ~~ map {-s} <*>'"
+alias countlines="wc -l"
+alias randomsel="shuf -n1 -e *"
+alias gitf="git fetch"
+alias gitm='git merge origin/$(current_branch)'
+alias keyboard-pt="setxkbmap br ; xmodmap ~/.xmodmaprc_altr"
+alias keyboard-us="setxkbmap us -variant intl ; xmodmap ~/.xmodmaprc"
+## Docker aliases
+alias dcs='docker-compose stop'
+alias dcr='docker-compose rm'
+alias diff='colordiff'
+alias gffstart='git flow feature start'
+alias gfffinish='git flow feature finish'
+alias prettyjson='python -m json.tool'
+alias dusort='du -sh * | sort -h'
+## Hamster project (time tracker)
+alias hc='hamster-cli'
+
+## Aliases from sub-repo
+source /home/boechat/Codes/git-subrepo/.rc
+## Completer for AWS cli tool
+## https://github.com/aws/aws-cli
+source /usr/local/bin/aws_zsh_completer.sh
+
+## ===================================================
+## Functions
+## ===================================================
+function pdfsearch () {
+    ## References:
+    ## * http://stackoverflow.com/a/4643518/747872
+    ## * http://stackoverflow.com/a/18041780/747872
+    cmd='pdftotext "{}" - | grep --with-filename --label="{}" --color "%s"'
+    fullcmd=$(printf $cmd $2)
+    echo $fullcmd
+    find $1 -name '*.pdf' -exec sh -c $fullcmd \;
+}
+
+function pflix () {
+    ## The function works very similarly the original command, link as first argument
+    ## and options as last arguments.
+    peerflix $1 --path ~/Videos ${@:2}
+}
+
+function renamedirs () {
+    oldname=$1
+    newname=$2
+    cmd='mv "${0}" "${0%/%s}/%s"'
+    fullcmd=$(printf $cmd $oldname $newname)
+    find . -depth -type d -name doc -exec sh -c $fullcmd {} \;
+}
+
+export GOPATH=$HOME/.gocode
+export PATH=$HOME/bin:$HOME/.linuxbrew/bin:/usr/local/bin:$PATH:$GOPATH/bin
+export JAVA_HOME=/usr/lib/jvm/default-java/
+#export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7
+#export TERM=xterm-256color
+export TERM=screen-256color
+# Android Studio
+export ANDROID_HOME=~/Android/Sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+## Local binaries
+export PATH=$PATH:$HOME/.local/bin
+## Haskell binaries
+export PATH=$PATH:$HOME/.cabal/bin
+
+
+# Load pyenv automatically by adding
+# # the following to ~/.zshrc:
+#export PATH="/home/andreboechat/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+ # Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+## ===================================================
+## Fixing of history search
+## http://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode#
+## ===================================================
+bindkey -r "^[/"
+
+## Nice message given by a cow.
+fortune | cowsay
+
+# added by travis gem
+[ -f /home/boechat/.travis/travis.sh ] && source /home/boechat/.travis/travis.sh
