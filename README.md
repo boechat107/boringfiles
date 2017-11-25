@@ -31,3 +31,6 @@ The dot files are organized with Debian in mind.
 * [spacemacs](http://spacemacs.org/)
 * [tmux](https://github.com/tmux/tmux)
 * zshrc
+* bashrc
+* xmodmaprc (replace "caps lock" by "ctrl")
+* git

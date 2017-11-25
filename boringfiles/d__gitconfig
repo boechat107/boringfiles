@@ -1,0 +1,29 @@
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 0x0+0+0
+	history-view-vpane-position = 357
+	main-window-view = HistoryView
+	file-view-vpane-position = 548
+[user]
+	name = Andre Ambrosio Boechat
+	email = boechat107@gmail.com
+[difftool.latex]
+    cmd = git-latexdiff "$LOCAL" "$REMOTE"
+[alias]
+    ldiff = difftool -t latex
+[core]
+    editor = vim 
+[merge]
+    tool = splice
+
+[mergetool "splice"]
+    cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
+[color]
+	ui = true
+[gui]
+[gui]
+	fontui = -family \"DejaVu Sans\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family \"DejaVu Sans Mono\" -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+[cola]
+	spellcheck = false

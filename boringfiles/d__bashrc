@@ -1,0 +1,72 @@
+use_color=true
+
+# Set colorful PS1 only on colorful terminals.
+# dircolors --print-database uses its own built-in database
+# instead of using /etc/DIR_COLORS.  Try to use the external file
+# first to take advantage of user additions.  Use internal bash
+# globbing instead of external grep binary.
+safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
+match_lhs=""
+[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
+[[ -z ${match_lhs}    ]] \
+    && type -P dircolors >/dev/null \
+    && match_lhs=$(dircolors --print-database)
+[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+
+if ${use_color} ; then
+    # Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+    if type -P dircolors >/dev/null ; then
+        if [[ -f ~/.dir_colors ]] ; then
+            eval $(dircolors -b ~/.dir_colors)
+        elif [[ -f /etc/DIR_COLORS ]] ; then
+            eval $(dircolors -b /etc/DIR_COLORS)
+        fi
+    fi
+
+    if [[ ${EUID} == 0 ]] ; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    fi
+
+    alias ls='ls --color=auto'
+    alias grep='grep --colour=auto'
+    alias grep='egrep --colour=auto'
+else
+    if [[ ${EUID} == 0 ]] ; then
+        # show root@ when we don't have colors
+        PS1='\u@\h \W \$ '
+    else
+        PS1='\u@\h \w \$ '
+    fi
+fi
+
+export PATH=$PATH:~/bin:~/.gocode/bin;
+#export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+export EDITOR=vim
+export GOPATH=~/.gocode
+
+## For vim-ipython
+stty stop undef # to unmap ctrl-s
+
+export TERM=screen-256color
+
+alias tmux="tmux -2"
+alias 7z-create="7z a -t7z -m0=lzma -mx=4 -mfb=64 -md=32m -ms=on"
+alias rm=trash
+alias rrm=/bin/rm
+#alias countlines="perl -le 'print ~~ map {-s} <*>'"
+alias countlines="wc -l"
+alias randomsel="shuf -n1 -e *"
+alias gits="git status"
+alias gitf="git fetch"
+alias gitm="git merge origin/master"
+alias gitp="git push origin master"
+
+
+# For Tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+# added by travis gem
+[ -f /home/boechat/.travis/travis.sh ] && source /home/boechat/.travis/travis.sh
