@@ -22,3 +22,12 @@ The dot files are organized with Debian in mind.
 ### Example
 
 `d__config__nvim` is renamed to `.config/nvim`.
+
+## Applications
+
+* [i3](https://i3wm.org/)
+* [conky](https://github.com/brndnmtthws/conky)
+* [leiningen](https://leiningen.org/)
+* [spacemacs](http://spacemacs.org/)
+* [tmux](https://github.com/tmux/tmux)
+* zshrc
