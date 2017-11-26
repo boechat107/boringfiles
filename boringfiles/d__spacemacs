@@ -383,6 +383,9 @@ you should place your code here."
   ;; String replacement like Vim.
   (spacemacs/set-leader-keys "o r" 'anzu-replace-at-cursor-thing)
   ;(define-key evil-normal-state-map (kbd ",r") (kbd ":.,$ s///gc"))
+  ;; Use parenthesis to go to the beginning or the end of a sexpression.
+  (define-key evil-normal-state-map (kbd ")") 'sp-end-of-sexp)
+  (define-key evil-normal-state-map (kbd "(") 'sp-beginning-of-sexp)
   ;; Reference: http://spacemacs.org/layers/+vim/evil-cleverparens/README.html
   (spacemacs/toggle-evil-cleverparens-on)
   ;; Org mode languages.
