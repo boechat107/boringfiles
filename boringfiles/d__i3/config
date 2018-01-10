@@ -191,8 +191,8 @@ bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock -c 111111 -d
 # suspend the computer
 bindsym Control+Shift+s exec hamster-cli stop && gksudo service openvpn stop && gksudo pm-suspend && i3lock -c 111111 -d
-# hibernation
-bindsym Control+Shift+h exec gksudo pm-hibernate && i3lock -c 111111 -d
+# hibernation - Forces the usage of the notebook's monitor before hibernating.
+bindsym Control+Shift+h exec bash ~/.screenlayout/single.sh && gksudo pm-hibernate && i3lock -c 111111 -d
 # synaptic
 bindsym Control+Shift+p workspace 6; exec gksudo synaptic-pkexec
 # recoll - file indexing
