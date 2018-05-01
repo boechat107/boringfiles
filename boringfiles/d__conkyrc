@@ -16,5 +16,5 @@ TEXT
 ^fg(\#F7BE81)Root: ^fg()${fs_used /} / ${fs_size /} ^fg(\#ff0000)| \
 ^fg()♪ ^fg()${exec amixer -c 0 get Master | awk -F'[]%[]' '/%/ {if ($7 == "off") { print "Mute" } else { print $2"%" }}' | uniq | head -1} ^fg(\#ff0000)| \
 ^fg()${time %a, %d.%m.%Y} ^fg(\#58ACFA)${time %H:%M} ^fg(\#ff0000)| \
-^fg(\#ffa500)BATT: $eval${if_match "$battery BAT0" > "20"}^fg(\#0B6121)${battery BAT0}$endif${if_match "$battery BAT0" <= "20"}^fg(\#FE2E2E)${battery BAT0}$endif
-#^fg(\#ffa500)BATT: $eval${if_match "$battery BAT1" > "20"}^fg(\#0B6121)${battery BAT1}$endif${if_match "$battery BAT1" <= "20"}^fg(\#FE2E2E)${battery BAT1}$endif
+#^fg(\#ffa500)BATT: $eval${if_match "$battery BAT0" > "20"}^fg(\#0B6121)${battery BAT0}$endif${if_match "$battery BAT0" <= "20"}^fg(\#FE2E2E)${battery BAT0}$endif
+^fg(\#ffa500)BATT: $eval${if_match "$battery BAT1" > "20"}^fg(\#0B6121)${battery BAT1}$endif${if_match "$battery BAT1" <= "20"}^fg(\#FE2E2E)${battery BAT1}$endif
