@@ -214,7 +214,7 @@ for_window [title="xfce4-notifyd"] floating enable
 
 ## Touchpad mode
 # Enables and disables the touchpad
-# exec synclient TouchpadOff=0
+bindsym XF86TouchpadToggle exec synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')
 
 # mode "tpad" {
 #     # just a test
