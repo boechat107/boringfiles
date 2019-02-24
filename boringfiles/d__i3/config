@@ -178,9 +178,9 @@ exec --no-startup-id redshift -l -27.578446:-48.506651 &
 
 
 # pulse audio volume control
-bindsym XF86AudioLowerVolume exec amixer -c 0 set Master 5- unmute
-bindsym XF86AudioRaiseVolume exec amixer -c 0 set Master 5+
-bindsym XF86AudioMute exec amixer -c 0 set Master toggle
+bindsym XF86AudioLowerVolume exec amixer -c 0 set PCM 5- unmute
+bindsym XF86AudioRaiseVolume exec amixer -c 0 set PCM 5+
+bindsym XF86AudioMute exec amixer -c 0 set PCM toggle
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
