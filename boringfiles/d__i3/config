@@ -164,7 +164,6 @@ bindsym $mod+r mode "resize"
 ## Startup applications ##
 # applets
 exec --no-startup-id wicd-gtk &
-exec --no-startup-id volumeicon &
 exec --no-startup-id xfce4-power-manager &
 ##exec --no-startup-id syndaemon -i 1.0 -K -R -t &
 # dropbox
@@ -178,9 +177,9 @@ exec --no-startup-id redshift -l -27.578446:-48.506651 &
 
 
 # pulse audio volume control
-bindsym XF86AudioLowerVolume exec amixer -c 0 set PCM 5- unmute
-bindsym XF86AudioRaiseVolume exec amixer -c 0 set PCM 5+
-bindsym XF86AudioMute exec amixer -c 0 set PCM toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
@@ -201,6 +200,7 @@ bindsym $mod+Control+f exec recoll
 
 ## Specific windows behaviors
 for_window [class="google-chrome" title="Google Chrome"] border none
+for_window [class="Google-chrome" title="Google Chrome"] border none
 for_window [class="Chromium-browser" title="Chromium"] border none
 for_window [class="Chromium" title="Chromium"] border none
 for_window [class="Firefox" title="Mozilla Firefox"] border none
