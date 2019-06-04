@@ -55,8 +55,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tmux="tmux -2"
 alias 7z-create="7z a -t7z -m0=lzma -mx=4 -mfb=64 -md=32m -ms=on"
-alias rm=trash
-alias rrm=/bin/rm
 #alias countlines="perl -le 'print ~~ map {-s} <*>'"
 alias countlines="wc -l"
 alias randomsel="shuf -n1 -e *"
