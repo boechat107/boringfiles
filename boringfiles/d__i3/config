@@ -173,7 +173,7 @@ exec dropbox start
 exec --no-startup-id setxkbmap us -variant intl ; xmodmap ~/.xmodmaprc
 #exec --no-startup-id i3-msg 'workspace 7; exec pidgin;'
 # Automatic color adjustment
-exec --no-startup-id redshift -l -27.578446:-48.506651 &
+exec --no-startup-id redshift -l -27.578446:-48.506651 -t 6500:4000 &
 
 
 # pulse audio volume control
