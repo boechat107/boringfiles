@@ -1,0 +1,471 @@
+filetype off
+set nocompatible
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'scrooloose/nerdtree'
+Plugin 'danro/rename.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'wincent/terminus'
+Plugin 'vim-airline/vim-airline'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'janko/vim-test'
+Plugin 'ycm-core/YouCompleteMe'
+
+Plugin 'pangloss/vim-javascript'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'jalvesaq/Nvim-R'
+Plugin 'rust-lang/rust.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'dag/vim2hs'
+Plugin 'plasticboy/vim-markdown'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on
+"call pathogen#infect()
+"call pathogen#runtime_append_all_bundles()
+
+set directory=~/Documents,/tmp
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+set nobackup		" DON'T keep a backup file
+set noswapfile
+set history=50		" keep 50 lines of command line history
+set showcmd			" display incomplete commands
+set incsearch		" do incremental searching
+set cindent
+set autoindent
+set scrolloff=5 		" 5 lines bevore and after the current line when scrolling
+" set ignorecase			" ignore case
+set smartcase			" but don't ignore it, when search string contains uppercase letters
+set showmatch			" showmatch: Show the matching bracket for the last ')'?
+set hid 				" allow switching buffers, which have unsaved changes
+set completeopt=menu,longest " :h 'complete'
+set complete=.,w,k,t
+set mousem=popup  " funcao do botao direito do mouse
+set ru  " informacoes sobre posicao do cursor
+set enc=utf-8
+set mouse=a
+syntax enable
+syn on
+set nu!
+set autowrite
+set grepprg=grep\ -nH\ $*
+"set guifont=Andale\ Mono\ 9
+"set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+"set guifont=Courier\ new\ 10
+"set guifont=DejaVu\ Sans\ Mono\ 9
+set guifont=Inconsolata\ 11
+"" The colorscheme is set by HourColor()
+set background=dark
+colorscheme hybrid
+" set shiftwidth=4
+" set tabstop=4
+" set softtabstop=4
+" set expandtab
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tw=79	" quebra de linha automatica
+set ssop-=options "" do not store global and local values in a session set ssop-=folds " do not store folds
+set wrap!
+" Auto load changed files
+set autoread
+" Auto resize the frames when the window is resized.
+au VimResized * wincmd =
+
+
+let maplocalleader = '\'
+
+" Automatic removal of trailing whitespace
+" http://vim.wikia.com/wiki/Remove_unwanted_spaces
+autocmd BufWritePre * %s/\s\+$//e
+
+" ===================================================
+" easymotion
+" ===================================================
+map <Leader> <Plug>(easymotion-prefix)
+
+" ===================================================
+" vim-airline
+" ===================================================
+let g:airline_section_a = airline#section#create_left(['mode', 'crypt', 'capslock', 'iminsert'])
+let g:airline_section_y = airline#section#create_right([])
+
+" ============================
+" Markdown settings
+" ============================
+au BufNewFile,BufRead *.md set fo+=t
+
+" ===================================================
+" GDScript - GoDot
+" ===================================================
+au BufNewFile,BufRead *.gd set expandtab
+
+" =========================================================================================
+" Rainbow parentheses
+" =========================================================================================
+"" Using slimv again.
+" augroup rainbow_parentheses
+"   au!
+"   au VimEnter * RainbowParenthesesActivate
+"   au BufEnter * RainbowParenthesesLoadRound
+"   au BufEnter * RainbowParenthesesLoadSquare
+"   au BufEnter * RainbowParenthesesLoadBraces
+" augroup END
+
+
+" =========================================================================================
+" Ctags
+" =========================================================================================
+set tags=./tags;/
+map <A-]> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" =========================================================================================
+" Spell chacking
+" =========================================================================================
+"set spell spelllang=en
+" =========================================================================================
+" autocomplpop
+" =========================================================================================
+" let g:acp_ignorecaseOption = 0
+" let g:acp_behaviorKeywordLength = 3
+
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#max_list = 20
+let g:neocomplete#force_overwrite_completefunc = 1
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+
+" ==================
+" neosnippets
+" ==================
+autocmd BufWrite *.snip,*.snippets call neosnippet#variables#set_snippets({})
+
+" =========================================================================================
+" Colors - Interface
+" =========================================================================================
+function! HourColor()
+    "" Reference: http://vim.wikia.com/wiki/Switch_color_schemes
+    let hr = str2nr(strftime('%H'))
+    if (hr >= 7 && hr <= 17)
+        let i = 0
+    else
+        let i = 1
+    endif
+    let nowcolors = 'seoul256-light hybrid'
+    execute 'colorscheme '.split(nowcolors)[i]
+    redraw
+    echo g:colors_name
+endfunction
+
+function! SwitchTheme()
+    if (g:colors_name == 'hybrid')
+        let color = 'seoul256-light'
+    else
+        let color = 'hybrid'
+    endif
+    execute 'colorscheme '.color
+    redraw
+    echo g:colors_name
+endfunction
+
+"" Setting the colorscheme automatically by the time of the day.
+" :call HourColor()
+
+let c_cpp_comments = 0
+let c_syntax_for_h = 1
+let c_C94 = 1
+let c_C99_warn = 1
+let c_cpp_warn = 1
+let c_warn_8bitchars = 1
+let c_warn_multichar = 1
+let c_warn_digraph = 1
+let c_warn_trigraph = 1
+let c_no_octal = 1
+let c_comment_strings = 1
+let c_comment_numbers = 1
+let c_comment_types = 1
+let c_comment_date_time = 1
+
+" =========================================================================================
+" COMANDOS AUTOMATICOS
+" =========================================================================================
+" Automatically give executable permissions if filename ends in .sh, .pl or .cgi
+au BufWritePost *.sh,*.cgi :!chmod a+x <afile>
+" Change to directory of current file
+" au BufEnter * lcd %:p:h
+
+" =========================================================================================
+"-------- Atalhos de teclado
+" =========================================================================================
+" Change to directory of current file
+map ,fd :lcd %:p:h
+map ,fp :!egrep -rn '' .<left><left><left>
+imap jk <Esc>
+
+" Copy text to the system clipboard.
+vmap ,y "+y
+
+"" Opens git gui to commit code.
+map ,gc :!git-cola  &<cr><cr>
+
+"" Vimux keyboard shortcuts
+" Execute the nearest test
+:map ,t :TestNearest<cr>
+map <silent> ,vr :so $MYVIMRC<cr>:so $MYVIMRC<CR>:exe ":echo 'vimrc reloaded'"<CR>
+" :call ReloadAllSnippets()<CR>
+map ,b :w ~/Dropbox/Backup_files/%.backup<cr>:echo "Backup of"@%<cr>
+" Apenas para o GVim
+if has("gui_running")
+    nnoremap <silent> <A-2> :bn<CR>
+    nnoremap <silent> <A-1> :bp<CR>
+    vmap <C-c> "+y
+    "au GUIEnter * simalt ~x
+else
+    "nnoremap <silent> X :bn<CR>
+    nnoremap <silent> Z :bp<CR>
+    map ,A ggVG
+endif
+map r "_x
+map ,c :s/^/\/\/<cr>
+map <F2> :mksession!<space>
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+map <F9> :set paste<CR>
+map <F10> :set nopaste<CR>
+map ,P gwap
+"" Resizing windows
+map + 10<c-w>+
+map - 10<c-w>-
+map <c-w>> :vertical resize +20<cr>
+map <c-w>< :vertical resize -20<cr>
+" Na procura e substituicao, % significa todo o documento e pode ser trocado pelos numeros
+" das linhas. O 'c' mando o VIM perguntar por uma confirmacao: y-> sim; n->nao; a-> todos;
+" q-> cancelar; I-> apenas ocorrencia atual; Ctrl-e/y-> rolar pelo documento.
+nmap ,r :.,$ s/<c-r>=expand("<cword>")<cr>//gc<left><left><left><left>
+map ,vg :g/<c-r>=expand("<cword>")<cr><cr>
+imap <A-j> <esc>
+
+" ===================================================
+" YouCompleteMe
+" ===================================================
+map ,k :YcmCompleter GetDoc<cr>
+map ,gd :YcmCompleter GoTo<cr>
+"Inserir meu nome e data atual no texto
+"imap CAB //= <cr>ANDRE AMBROSIO BOECHAT<cr><esc>:.!date<cr>$a<cr>//= <cr>
+
+" Abre uma janela do VIM com o arquivo dos snippets do tipo de arquivo editado.
+function! ReturnSnippetsOf()
+    let sname = &ft.".snippets"
+    return sname." &"
+endfunction
+map <F4> :!gvim ~/.vim/bundle/mysnippets/snippets/<c-r>=ReturnSnippetsOf()<cr><cr><cr>
+
+" =========================================================================================
+" RACKET
+" =========================================================================================
+"au BufReadPost *.rkt,*.rktl set filetype=scheme
+
+" =========================================================================================
+" LISP/Clojure (Slimv)
+" =========================================================================================
+" let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+" let g:slimv_swank_clojure = '! xterm -e lein swank &'
+let g:slimv_leader = '\,'
+let g:paredit_leader = '\'
+let g:lisp_rainbow = 1
+let g:slimv_repl_syntax = 1
+let g:slimv_ctags = 1
+"let g:swank_log = 1
+
+let tlist_clojure_settings = 'lisp;f:function'
+"let tlist_clojure_settings = 'clojure'
+
+" Enabling paredit functionality for another languages.
+" au FileType javascript call PareditInitBuffer()
+
+" =========================================================================================
+" clojure
+" =========================================================================================
+" Folds
+" au BufRead,BufNewFile *.clj set fde=getline(v:lnum)=~'^\\s*$'&&getline(v:lnum+1)=~'\\S'?'<1':1
+" au BufRead,BufNewFile *.clj set fdm=expr
+" au BufRead,BufNewFile *.clj iunmap <tab>
+" au BufRead,BufNewFile *.clj set iskeyword+=-
+" au BufRead,BufNewFile *.clj call MyClojureConfig()
+"
+" function MyClojureConfig()
+"     set fde=getline(v:lnum)=~'^\\s*$'&&getline(v:lnum+1)=~'\\S'?'<1':1
+"     set fdm=expr
+"     set iskeyword+=-
+" endfunction
+
+" ******************************************************************
+" SNIPPETS
+" ******************************************************************
+let g:snips_author = 'Andre A. Boechat'
+
+" ******************************************************************
+" ASSEMBLE
+" ******************************************************************
+autocmd FileType asm set autoindent
+
+
+" *****************************************************************************************
+" TXT
+" *****************************************************************************************
+"au! BufRead,BufNewFile,BufWinEnter *.txt call CommTXT()
+au! BufWinEnter *.txt call CommTXT()
+function! CommTXT()
+    set filetype=txt
+    set nocindent
+    set nosmartindent
+    set noautoindent
+endfunction
+
+
+"*****************************************************************
+" LATEX
+"*****************************************************************
+" Comandos importantes:
+"   -> ^x^k    completa palavras
+"   -> za		abre e fecha divisorias
+"   -> \ll		compila
+"   -> \lv		abre o arquivo para visualizacao
+"   -> ^j		pula para lugar editavel
+"   -> F9		completa referencias
+"   -> E*		algum environment
+"   -> F*		algum tipo de fonte
+"   -> `FONTE		selecionar algum tipo de fonte quando selecionar um texto
+"   -> \rf		atualiza as abas do documento
+"   -> BB{B,L,H,X}	item de bibliografia
+
+"   \, \: \;  -> produzem espaços no modo matematico
+"   \!		-> Espaço negativo
+
+"au! BufRead,BufNewFile *.tex		setfiletype tex
+autocmd FileType plaintex set filetype=tex
+au! BufNewFile *.tex nmap <F3> :!rm<space>-I<space>*.log<space>*.dvi<space>*.bbl<space>*.aux<CR>
+
+au! FileType tex syntax spell toplevel
+let g:tex_comment_nospell=1
+
+" As seguintes mudancas devem ser feitas no arquivo .vim/ftplugin/tex.vim
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
+let g:Tex_CompileRule_pdf = 'ps2pdf -sPAPERSIZE=a4 $*.ps'
+let g:Tex_CompileRule_dvi = 'latex -shell-escape --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = 'dvips $*.dvi'
+
+let g:Tex_AdvancedMath = 0 "desabilitando o ~a criar mathcal ou \cite
+let g:Tex_EnvironmentMaps=0
+let g:Tex_EnvironmentMenus=0
+let g:Tex_FontMaps=0
+let g:Tex_FontMenus=0
+let g:Tex_SectionMaps=0
+let g:Tex_SectionMenus=0
+
+" ==================================================================
+" HTML
+" ==================================================================
+au FileType html 	call ComandosHTML()
+
+" autocmd FileType html set filetype=htmldjango
+
+
+" Converte os caracteres especiais para suas respectivas
+" entidades em HTML
+function! HtmlEntities()
+  " Vogais com acento agudo
+   silent s/á/\&aacute;/eg
+   silent s/é/\&eacute;/eg
+   silent s/í/\&iacute;/eg
+   silent s/ó/\&oacute;/eg
+   silent s/ú/\&uacute;/eg
+
+   " Vogais com acento circunflexo
+   silent s/â/\&acirc;/eg
+   silent s/ê/\&ecirc;/eg
+   silent s/î/\&icirc;/eg
+   silent s/ô/\&ocirc;/eg
+   silent s/û/\&ucirc;/eg
+
+   " Vogais com til
+   silent s/ã/\&atilde;/eg
+   silent s/õ/\&otilde;/eg
+
+   " C com cedilha
+   silent s/ç/\&ccedil;/eg
+endfunction
+
+function! ComandosHTML()
+    map <silent> <C-H> :%call HtmlEntities()<CR>
+endfunction
+
+" ============
+" Javascript
+" ============
+let g:used_javascript_libs = 'jquery,requirejs'
+
+" ******************************************************************
+" SQL
+" ******************************************************************
+au! BufRead,BufNewFile *.sql call HighlightSql()
+
+function! HighlightSql()
+    syn keyword sqlType int int2 int4 int8 dec serial time
+    hi link sqlType Type
+
+    syn keyword sqlCom primary foreign key cascade references domain restrict sequence cycle
+    hi link sqlCom Special
+
+    syn keyword sqlFun now
+    hi link sqlFun Function
+endfunction
+
+
+" =========================================================================================
+" PYTHON
+" =========================================================================================
+
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['flake8']
+" Ignore too long lines.
+let g:syntastic_python_flake8_args = "--ignore=E266,E731"
+let g:syntastic_python_mypy_args = "--ignore-missing-imports"
+"let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+" =========================================================================================
+" LISP
+" =========================================================================================
+au! BufRead,BufNewFile,BufEnter *.cl let b:listener_keep_open=1
+
+" ===================================================
+" Nerdtree
+" ===================================================
+map <C-n> :NERDTreeToggle<CR>
