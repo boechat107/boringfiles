@@ -34,3 +34,4 @@ The dot files are organized with Debian in mind.
 * bashrc
 * xmodmaprc (replace "caps lock" by "ctrl")
 * git
+* vim
