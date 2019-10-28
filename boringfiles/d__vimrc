@@ -24,6 +24,7 @@ Plugin 'ycm-core/YouCompleteMe'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'jalvesaq/Nvim-R'
 Plugin 'rust-lang/rust.vim'
