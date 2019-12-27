@@ -167,13 +167,13 @@ exec --no-startup-id nm-applet &
 exec --no-startup-id xfce4-power-manager &
 ##exec --no-startup-id syndaemon -i 1.0 -K -R -t &
 # dropbox
-exec dropbox start
+exec dropbox stop
 # switch Ctrl button
 # exec --no-startup-id setxkbmap br ; xmodmap ~/.xmodmaprc
 exec --no-startup-id setxkbmap us -variant intl ; xmodmap ~/.xmodmaprc
 #exec --no-startup-id i3-msg 'workspace 7; exec pidgin;'
 # Automatic color adjustment
-exec --no-startup-id redshift -l -27.578446:-48.506651 -t 6500:4000 &
+exec --no-startup-id redshift -l -27.578446:-48.506651 -t 6500:4000 -b 1.0:0.5 &
 
 
 # pulse audio volume control
