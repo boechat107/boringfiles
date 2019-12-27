@@ -12,7 +12,6 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'danro/rename.vim'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'wincent/terminus'
 Plugin 'vim-airline/vim-airline'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'easymotion/vim-easymotion'
@@ -21,9 +20,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'janko/vim-test'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'psf/black'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'jalvesaq/Nvim-R'
@@ -112,19 +113,6 @@ au BufNewFile,BufRead *.md set fo+=t
 " GDScript - GoDot
 " ===================================================
 au BufNewFile,BufRead *.gd set expandtab
-
-" =========================================================================================
-" Rainbow parentheses
-" =========================================================================================
-"" Using slimv again.
-" augroup rainbow_parentheses
-"   au!
-"   au VimEnter * RainbowParenthesesActivate
-"   au BufEnter * RainbowParenthesesLoadRound
-"   au BufEnter * RainbowParenthesesLoadSquare
-"   au BufEnter * RainbowParenthesesLoadBraces
-" augroup END
-
 
 " =========================================================================================
 " Ctags
@@ -453,13 +441,16 @@ endfunction
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
 " Ignore too long lines.
-let g:syntastic_python_flake8_args = "--ignore=E266,E731"
+let g:syntastic_python_flake8_args = "--ignore=E266,E731,W504"
 let g:syntastic_python_mypy_args = "--ignore-missing-imports"
 "let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
+
+" Black formatter.
+let g:black_linelength = 79
 
 " =========================================================================================
 " LISP
