@@ -210,8 +210,6 @@ au BufWritePost *.sh,*.cgi :!chmod a+x <afile>
 "-------- Atalhos de teclado
 " =========================================================================================
 " Change to directory of current file
-map ,fd :lcd %:p:h
-map ,fp :!egrep -rn '' .<left><left><left>
 imap jk <Esc>
 
 " Copy text to the system clipboard.
