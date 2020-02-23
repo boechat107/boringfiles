@@ -32,6 +32,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'dag/vim2hs'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'mattn/emmet-vim'  " autocomplete for HTML
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -410,6 +411,11 @@ function! ComandosHTML()
     map <silent> <C-H> :%call HtmlEntities()<CR>
 endfunction
 
+" https://stackoverflow.com/a/159065/747872
+au FileType html setlocal tw=0
+
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 " ============
 " Javascript
 " ============
