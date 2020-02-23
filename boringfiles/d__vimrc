@@ -449,7 +449,7 @@ let g:syntastic_python_mypy_args = "--ignore-missing-imports"
 
 " Black formatter.
 let g:black_linelength = 79
-
+map ,f :autocmd BufWritePre *.py Black<CR>
 " =========================================================================================
 " LISP
 " =========================================================================================
