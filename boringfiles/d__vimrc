@@ -31,7 +31,6 @@ Plugin 'jalvesaq/Nvim-R'
 Plugin 'rust-lang/rust.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'dag/vim2hs'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'mattn/emmet-vim'  " autocomplete for HTML
 
 " All of your Plugins must be added before the following line
@@ -94,10 +93,13 @@ let maplocalleader = '\'
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces
 autocmd BufWritePre * %s/\s\+$//e
 
+" Use <space> to open all nested folds under the cursor.
+map <space> zA
 " ===================================================
 " easymotion
 " ===================================================
 map <Leader> <Plug>(easymotion-prefix)
+map ,s <Leader>s
 
 " ===================================================
 " vim-airline
