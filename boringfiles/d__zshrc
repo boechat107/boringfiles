@@ -124,7 +124,7 @@ function git-mr-cherry-pick () {
     git branch "$currentbranch"-TMP
     # Taking the last master version.
     git checkout master
-    git pull
+    git pull origin master
     # Creating a fresh new branch.
     git branch -D "$currentbranch"
     git branch "$currentbranch"
