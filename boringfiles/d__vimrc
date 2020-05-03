@@ -427,7 +427,9 @@ autocmd FileType html,css EmmetInstall
 " ============
 " Javascript
 " ============
-let g:used_javascript_libs = 'jquery,requirejs'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+au! BufRead,BufNewFile *.js setlocal foldmethod=syntax
 
 " ******************************************************************
 " SQL
