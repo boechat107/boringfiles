@@ -88,6 +88,11 @@ fi
 ## ===================================================
 ## Functions
 ## ===================================================
+function hg () {
+    # Searches the CLI history with grep.
+    history | grep $@ | head
+}
+
 function pdfsearch () {
     ## References:
     ## * http://stackoverflow.com/a/4643518/747872
