@@ -115,6 +115,13 @@ au BufNewFile,BufRead *.md set fo+=t
 " ===================================================
 au BufNewFile,BufRead *.gd set expandtab
 
+" ===================================================
+" Rust
+" ===================================================
+" From rust.vim
+let g:rustfmt_autosave = 1
+autocmd FileType rust nnoremap <buffer> ,t :RustTest<CR>
+
 " =========================================================================================
 " Ctags
 " =========================================================================================
@@ -221,7 +228,6 @@ map ,gc :!git-cola  &<cr><cr>
 
 "" Vimux keyboard shortcuts
 " Execute the nearest test
-:map ,t :TestNearest<cr>
 map <silent> ,vr :so $MYVIMRC<cr>:so $MYVIMRC<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " :call ReloadAllSnippets()<CR>
 map ,b :w ~/Dropbox/Backup_files/%.backup<cr>:echo "Backup of"@%<cr>
@@ -455,7 +461,9 @@ let g:syntastic_python_mypy_args = "--ignore-missing-imports"
 
 " Black formatter.
 let g:black_linelength = 79
-map ,f :autocmd BufWritePre *.py Black<CR>
+autocmd FileType python nnoremap <buffer> ,f :autocmd BufWritePre *.py Black<CR>
+autocmd FileType python nnoremap <buffer> ,F :Black<CR>
+autocmd FileType python nnoremap <buffer> ,t :TestNearest<CR>
 " =========================================================================================
 " LISP
 " =========================================================================================
