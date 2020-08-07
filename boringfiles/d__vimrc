@@ -32,6 +32,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'dag/vim2hs'
 Plugin 'mattn/emmet-vim'  " autocomplete for HTML
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -75,6 +76,7 @@ set ssop-=options "" do not store global and local values in a session set ssop-
 set wrap!
 " Auto load changed files
 set autoread
+set hlsearch
 " Auto resize the frames when the window is resized.
 au VimResized * wincmd =
 
@@ -89,7 +91,7 @@ autocmd BufWritePre * %s/\s\+$//e
 " easymotion
 " ===================================================
 map <Leader> <Plug>(easymotion-prefix)
-map ,s <Leader>s
+map <space> <Leader>s
 
 " ===================================================
 " vim-airline
