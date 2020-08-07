@@ -65,18 +65,10 @@ syn on
 set nu!
 set autowrite
 set grepprg=grep\ -nH\ $*
-"set guifont=Andale\ Mono\ 9
-"set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
-"set guifont=Courier\ new\ 10
-"set guifont=DejaVu\ Sans\ Mono\ 9
 set guifont=Inconsolata\ 11
 "" The colorscheme is set by HourColor()
 set background=dark
 colorscheme hybrid
-" set shiftwidth=4
-" set tabstop=4
-" set softtabstop=4
-" set expandtab
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set tw=79	" quebra de linha automatica
 set ssop-=options "" do not store global and local values in a session set ssop-=folds " do not store folds
@@ -93,8 +85,6 @@ let maplocalleader = '\'
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces
 autocmd BufWritePre * %s/\s\+$//e
 
-" Use <space> to open all nested folds under the cursor.
-map <space> zA
 " ===================================================
 " easymotion
 " ===================================================
