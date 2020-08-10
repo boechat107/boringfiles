@@ -21,6 +21,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'janko/vim-test'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'blp1526/storage.vim'  " Edit files on S3.
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'Vimjas/vim-python-pep8-indent'
