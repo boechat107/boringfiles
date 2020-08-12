@@ -22,6 +22,9 @@ Plugin 'janko/vim-test'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'blp1526/storage.vim'  " Edit files on S3.
+Plugin 'tpope/vim-scriptease' " Utilities for plugin development.
+Plugin 'Konfekt/FastFold' " Improves Vim's folding performance.
+Plugin 'pseewald/vim-anyfold'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'Vimjas/vim-python-pep8-indent'
@@ -88,6 +91,11 @@ let maplocalleader = '\'
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces
 autocmd BufWritePre * %s/\s\+$//e
 
+" ===================================================
+" anyfold
+" ===================================================
+autocmd Filetype vim AnyFoldActivate
+autocmd Filetype javascript AnyFoldActivate
 " ===================================================
 " easymotion
 " ===================================================
@@ -424,7 +432,6 @@ autocmd FileType html,css EmmetInstall
 " ============
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-au! BufRead,BufNewFile *.js setlocal foldmethod=syntax
 
 " ******************************************************************
 " SQL
