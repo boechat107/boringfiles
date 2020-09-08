@@ -25,6 +25,7 @@ Plugin 'blp1526/storage.vim'  " Edit files on S3.
 Plugin 'tpope/vim-scriptease' " Utilities for plugin development.
 Plugin 'Konfekt/FastFold' " Improves Vim's folding performance.
 Plugin 'pseewald/vim-anyfold'
+Plugin 'RRethy/vim-illuminate'  " Highlight occurrences of the word under cursor
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'Vimjas/vim-python-pep8-indent'
@@ -77,6 +78,7 @@ colorscheme hybrid
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set tw=79	" quebra de linha automatica
 set ssop-=options "" do not store global and local values in a session set ssop-=folds " do not store folds
+set ssop-=folds "" do not store global and local values in a session set ssop-=folds " do not store folds
 set wrap!
 " Auto load changed files
 set autoread
@@ -90,6 +92,14 @@ let maplocalleader = '\'
 " Automatic removal of trailing whitespace
 " http://vim.wikia.com/wiki/Remove_unwanted_spaces
 autocmd BufWritePre * %s/\s\+$//e
+
+" ===================================================
+" illuminate
+" ===================================================
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
 
 " ===================================================
 " anyfold
