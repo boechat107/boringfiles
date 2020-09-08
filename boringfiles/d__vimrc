@@ -102,6 +102,25 @@ augroup illuminate_augroup
 augroup END
 
 " ===================================================
+" syntastic
+" ===================================================
+let g:syntastic_vim_checkers = ['vint']
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['flake8']
+" Ignore too long lines.
+let g:syntastic_python_flake8_args = "--ignore=E266,E731,W504"
+let g:syntastic_python_mypy_args = "--ignore-missing-imports"
+"let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+" ===================================================
 " anyfold
 " ===================================================
 autocmd Filetype vim AnyFoldActivate
@@ -399,10 +418,7 @@ let g:Tex_SectionMenus=0
 " HTML
 " ==================================================================
 au FileType html 	call ComandosHTML()
-
 " autocmd FileType html set filetype=htmldjango
-
-
 " Converte os caracteres especiais para suas respectivas
 " entidades em HTML
 function! HtmlEntities()
@@ -437,11 +453,6 @@ au FileType html setlocal tw=0
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
-" ============
-" Javascript
-" ============
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 " ******************************************************************
 " SQL
@@ -463,18 +474,6 @@ endfunction
 " =========================================================================================
 " PYTHON
 " =========================================================================================
-
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['flake8']
-" Ignore too long lines.
-let g:syntastic_python_flake8_args = "--ignore=E266,E731,W504"
-let g:syntastic_python_mypy_args = "--ignore-missing-imports"
-"let g:syntastic_python_pyflakes_exe = 'python3 -m pyflakes'
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
 " Black formatter.
 let g:black_linelength = 79
 autocmd FileType python nnoremap <buffer> ,f :autocmd BufWritePre *.py Black<CR>
