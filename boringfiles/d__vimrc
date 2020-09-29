@@ -94,6 +94,13 @@ let maplocalleader = '\'
 autocmd BufWritePre * %s/\s\+$//e
 
 " ===================================================
+" vim-test
+" ===================================================
+autocmd FileType python nnoremap <buffer> ,t :TestNearest<CR>
+autocmd FileType javascript nnoremap <buffer> ,t :TestNearest<CR>
+autocmd FileType typescript nnoremap <buffer> ,t :TestNearest<CR>
+
+" ===================================================
 " illuminate
 " ===================================================
 augroup illuminate_augroup
@@ -125,6 +132,7 @@ let g:syntastic_python_mypy_args = "--ignore-missing-imports"
 " ===================================================
 autocmd Filetype vim AnyFoldActivate
 autocmd Filetype javascript AnyFoldActivate
+autocmd Filetype typescript AnyFoldActivate
 " ===================================================
 " easymotion
 " ===================================================
@@ -478,7 +486,6 @@ endfunction
 let g:black_linelength = 79
 autocmd FileType python nnoremap <buffer> ,f :autocmd BufWritePre *.py Black<CR>
 autocmd FileType python nnoremap <buffer> ,F :Black<CR>
-autocmd FileType python nnoremap <buffer> ,t :TestNearest<CR>
 " =========================================================================================
 " LISP
 " =========================================================================================
