@@ -123,13 +123,14 @@ function git-mr-cherry-pick () {
     # With "HEAD" at the branch you want to update, issue this command passing
     # the base branch's name.
     basebranch=$1
+    mainbranch=${2:-master}
     currentbranch=$(git rev-parse --abbrev-ref HEAD)
     tmpbranch="$currentbranch"-TMP
     # Creating a temporary branch.
     git branch "$currentbranch"-TMP
     # Taking the last master version.
-    git checkout master
-    git pull origin master
+    git checkout $mainbranch
+    git pull origin $mainbranch
     # Creating a fresh new branch.
     git branch -D "$currentbranch"
     git branch "$currentbranch"
