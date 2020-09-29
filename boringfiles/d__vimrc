@@ -94,6 +94,11 @@ let maplocalleader = '\'
 autocmd BufWritePre * %s/\s\+$//e
 
 " ===================================================
+" Javascript
+" ===================================================
+autocmd Filetype javascript set sw=2
+autocmd Filetype typescript set sw=2
+" ===================================================
 " vim-test
 " ===================================================
 autocmd FileType python nnoremap <buffer> ,t :TestNearest<CR>
