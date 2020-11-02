@@ -28,7 +28,6 @@ Plugin 'pseewald/vim-anyfold'
 Plugin 'RRethy/vim-illuminate'  " Highlight occurrences of the word under cursor
 
 Plugin 'pangloss/vim-javascript'
-Plugin 'prettier/vim-prettier'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'psf/black'
 Plugin 'tmhedberg/SimpylFold'
@@ -105,6 +104,12 @@ autocmd FileType typescript nnoremap <buffer> ,f :ALEFix<CR>
 autocmd FileType javascript nnoremap <buffer> ,f :ALEFix<CR>
 autocmd Filetype javascript set sw=2
 autocmd Filetype typescript set sw=2
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+    au FileType javascriptreact setlocal foldmethod=syntax
+    au FileType typescript setlocal foldmethod=syntax
+augroup END
 " ===================================================
 " vim-test
 " ===================================================
@@ -143,8 +148,6 @@ let g:syntastic_python_mypy_args = "--ignore-missing-imports"
 " anyfold
 " ===================================================
 autocmd Filetype vim AnyFoldActivate
-autocmd Filetype javascript AnyFoldActivate
-autocmd Filetype typescript AnyFoldActivate
 " ===================================================
 " easymotion
 " ===================================================
