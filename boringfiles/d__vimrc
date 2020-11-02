@@ -274,6 +274,7 @@ au BufWritePost *.sh,*.cgi :!chmod a+x <afile>
 " =========================================================================================
 "-------- Atalhos de teclado
 " =========================================================================================
+map ,s :grep! -rn '\<<c-r>=expand("<cword>")<cr>\>'
 " Change to directory of current file
 imap jk <Esc>
 
