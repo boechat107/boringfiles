@@ -11,7 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
 Plugin 'danro/rename.vim'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'dense-analysis/ale'
 Plugin 'vim-airline/vim-airline'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'easymotion/vim-easymotion'
@@ -95,8 +95,14 @@ let maplocalleader = '\'
 autocmd BufWritePre * %s/\s\+$//e
 
 " ===================================================
+" Ale
+" ===================================================
+let g:ale_fixers = {'javascript': ['eslint'], 'typescript': ['eslint']}
+" ===================================================
 " Javascript
 " ===================================================
+autocmd FileType typescript nnoremap <buffer> ,f :ALEFix<CR>
+autocmd FileType javascript nnoremap <buffer> ,f :ALEFix<CR>
 autocmd Filetype javascript set sw=2
 autocmd Filetype typescript set sw=2
 " ===================================================
