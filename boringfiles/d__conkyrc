@@ -1,14 +1,16 @@
-out_to_x no
-out_to_console yes
-use_spacer left
-update_interval 3.0
-short_units yes
+conky.config = {
+    out_to_x = false,
+    out_to_console = true,
+    update_interval = 3.0,
+    short_units = true
+}
 
+--[[
+^fg(\#81BEF7)CPU: ^fg()$cpu%  ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input | cut -c-2}C ${acpitemp}C ^fg(\#ff0000)| \
+^fg()♪ ^fg()${exec ~/.conky/volumelevel.sh} ^fg(\#ff0000)| \
+]]
 
-#^fg(\#81BEF7)CPU: ^fg()$cpu%  ${exec cat /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input | cut -c-2}C ${acpitemp}C ^fg(\#ff0000)| \
-#^fg()♪ ^fg()${exec ~/.conky/volumelevel.sh} ^fg(\#ff0000)| \
-
-TEXT
+conky.text = [[
 ^fg(\#ffa500)Kernel: ^fg()${kernel} ^fg(\#ff0000)| \
 ^fg(\#81BEF7)CPU: ^fg()$cpu%  ${acpitemp}C ^fg(\#ff0000)| \
 ^fg(\#ffd700)RAM: ^fg()${memperc}% ^fg(\#ff0000)| \
@@ -17,5 +19,6 @@ TEXT
 ^fg()♪ ^fg()${exec pactl list sinks | grep 'Volume: front' | grep -Po '\d+%' | head -n 1}  \
 Mute: ${exec pactl list sinks | grep 'Mute:' | awk -F ':' '{print $2}'} ^fg(\#ff0000)| \
 ^fg()${time %a, %d.%m.%Y} ^fg(\#58ACFA)${time %H:%M} ^fg(\#ff0000)| \
-#^fg(\#ffa500)BATT: $eval${if_match "$battery BAT0" > "20"}^fg(\#0B6121)${battery BAT0}$endif${if_match "$battery BAT0" <= "20"}^fg(\#FE2E2E)${battery BAT0}$endif
+# ^fg(\#ffa500)BATT: $eval${if_match "$battery BAT0" > "20"}^fg(\#0B6121)${battery BAT0}$endif${if_match "$battery BAT0" <= "20"}^fg(\#FE2E2E)${battery BAT0}$endif
 ^fg(\#ffa500)BATT: $eval${if_match "$battery BAT1" > "20"}^fg(\#0B6121)${battery BAT1}$endif${if_match "$battery BAT1" <= "20"}^fg(\#FE2E2E)${battery BAT1}$endif
+]]
