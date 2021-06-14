@@ -70,8 +70,7 @@ alias gffstart='git flow feature start'
 alias gfffinish='git flow feature finish'
 alias prettyjson='python -m json.tool'
 alias dusort='du -sh * | sort -h'
-## Hamster project (time tracker)
-alias hc='hamster-cli'
+alias fixtodo='grep -rnE "(TODO|FIXME)"'
 
 ## Aliases from sub-repo
 SUBREPO_RC=/home/boechat/Codes/git-subrepo/.rc
