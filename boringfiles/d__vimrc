@@ -21,10 +21,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'janko/vim-test'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'blp1526/storage.vim'  " Edit files on S3.
+" Plugin 'blp1526/storage.vim'  " Edit files on S3.
+Plugin 'file:///home/boechat/Codes/VimPlugins/storage.vim', {'pinned': 1}
 Plugin 'tpope/vim-scriptease' " Utilities for plugin development.
 Plugin 'Konfekt/FastFold' " Improves Vim's folding performance.
 Plugin 'pseewald/vim-anyfold'
+Plugin 'godlygeek/tabular' " Automatically aligns text and tables.
 Plugin 'RRethy/vim-illuminate'  " Highlight occurrences of the word under cursor
 
 Plugin 'pangloss/vim-javascript'
@@ -38,6 +40,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'dag/vim2hs'
 Plugin 'mattn/emmet-vim'  " autocomplete for HTML
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'iamcco/markdown-preview.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -96,12 +99,16 @@ autocmd BufWritePre * %s/\s\+$//e
 " ===================================================
 " Ale
 " ===================================================
-let g:ale_fixers = {'javascript': ['eslint'], 'typescript': ['eslint']}
+let g:ale_python_black_options = '-l 79'
+let g:ale_fixers = {
+            \ 'javascript': ['eslint'], 'typescript': ['eslint'],
+            \ 'python': ['black']
+            \}
+autocmd FileType * nnoremap <buffer> ,f :ALEFix<CR>
+nnoremap <buffer> ,F :autocmd BufWritePre * :ALEFix<CR>
 " ===================================================
 " Javascript
 " ===================================================
-autocmd FileType typescript nnoremap <buffer> ,f :ALEFix<CR>
-autocmd FileType javascript nnoremap <buffer> ,f :ALEFix<CR>
 autocmd Filetype javascript set sw=2
 autocmd Filetype typescript set sw=2
 augroup javascript_folding
@@ -498,10 +505,6 @@ endfunction
 " =========================================================================================
 " PYTHON
 " =========================================================================================
-" Black formatter.
-let g:black_linelength = 79
-autocmd FileType python nnoremap <buffer> ,f :autocmd BufWritePre *.py Black<CR>
-autocmd FileType python nnoremap <buffer> ,F :Black<CR>
 " =========================================================================================
 " LISP
 " =========================================================================================
