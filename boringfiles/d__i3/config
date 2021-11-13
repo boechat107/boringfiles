@@ -184,8 +184,11 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 ## Applications shortcut
 # locking the screen
 bindsym Control+Mod1+l exec i3-msg workspace 1 && i3lock -c 111111 -d
-# suspend the computer
-bindsym Control+Shift+s exec systemctl suspend && i3lock -c 111111 -d
+# Suspend the computer, but disable VPN and wifi before doing it.
+bindsym Control+Shift+s exec nordvpn d \
+    && nmcli d disconnect wlp61s0 \
+    && systemctl suspend \
+    && i3lock -c 111111 -d
 # hibernation - Forces the usage of the notebook's monitor before hibernating.
 bindsym Control+Shift+h exec systemctl hibernate && i3lock -c 111111 -d
 # synaptic
