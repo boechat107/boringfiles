@@ -7,8 +7,18 @@
 
 [core]
     editor = vim
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    light = false
+    line-numbers = true
+
 [merge]
-    tool = splice
+    tool = meld
 
 [mergetool "splice"]
     cmd = "gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
