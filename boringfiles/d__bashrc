@@ -42,10 +42,7 @@ else
     fi
 fi
 
-export PATH=$PATH:~/bin:~/.gocode/bin;
-#export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 export EDITOR=vim
-export GOPATH=~/.gocode
 
 ## For vim-ipython
 stty stop undef # to unmap ctrl-s
@@ -68,11 +65,8 @@ alias gitp="git push origin master"
 # For Tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
-# added by travis gem
-[ -f /home/boechat/.travis/travis.sh ] && source /home/boechat/.travis/travis.sh
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sheval "$(atuin init bash)"
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
